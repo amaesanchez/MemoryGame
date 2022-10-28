@@ -1,16 +1,48 @@
-/* you can add to or change this. */
 * {
-  border: 3px solid red;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 #header {
+  background-color: beige;
+  padding: 45px;
   text-align: center;
+  font-family: "Grover Heavy", sans-serif;
+  font-size: 55px;
+  color: orange;
+  text-shadow: 3px 3px 2px rgb(64, 132, 61);
 }
 
-#game div {
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  margin: 20px;
-  display: inline-block;
+#caption {
+  padding: 12px;
+  font-size: 20px;
+  color: rgb(130, 128, 128);
+  text-shadow: 0 0 0;
+}
+
+#game {
+  position: relative;
+  background-color: beige;
+  height: 70vh;
+}
+
+#deck {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  height: auto;
+  width: auto;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: white;
+  border: 3px solid rgb(92, 98, 94);
+  box-shadow: 5px 5px 5px rgb(170, 170, 170);
+  width: 8vw;
+  height: 22vh;
+  margin: 4px;
+}
+
+@media screen and (max-width: 900px) {
 }
