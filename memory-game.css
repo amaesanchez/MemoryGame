@@ -1,0 +1,16 @@
+/* you can add to or change this. */
+* {
+  border: 3px solid red;
+}
+
+#header {
+  text-align: center;
+}
+
+#game div {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display: inline-block;
+}
