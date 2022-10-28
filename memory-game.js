@@ -1,17 +1,25 @@
 "use strict";
 
 /** Memory game: find matching pairs of cards and flip both of them. */
-
+const cards = document.querySelectorAll(".card-container")
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLORS = [
-  "red", "blue", "green", "orange", "purple",
-  "red", "blue", "green", "orange", "purple",
+  "firebrick",
+  "pink",
+  "DarkOliveGreen",
+  "orange",
+  "cadetblue",
+  "firebrick",
+  "pink",
+  "DarkOliveGreen",
+  "orange",
+  "cadetblue",
 ];
 
 const colors = shuffle(COLORS);
+console.log(colors);
 
 createCards(colors);
-
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -42,20 +50,27 @@ function createCards(colors) {
   const gameBoard = document.getElementById("game");
 
   for (let color of colors) {
-    // missing code here ...
+    let card = document.createElement("img");
+    card.classList.add("card-container");
+    card.style.backgroundColor = color;
+    gameBoard.append(card);
   }
+  console.log(gameBoard);
 }
 
 /** Flip a card face-up. */
+/** on card click, flipCard (toggle bg color to random from COLORS) */
 
 function flipCard(card) {
   // ... you need to write this ...
+  // if two cards are already flipped, cant flip another card, & setTimer
 }
 
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
   // ... you need to write this ...
+  // if only 1 card is up in deck, let unflip (toggle back to white)
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
@@ -63,3 +78,9 @@ function unFlipCard(card) {
 function handleCardClick(evt) {
   // ... you need to write this ...
 }
+
+cards.forEach(card => {
+  card.addEventListener("click", (evt) => {
+    handleCardClick(evt);
+  })
+})

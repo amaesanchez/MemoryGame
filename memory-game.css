@@ -20,13 +20,13 @@
   text-shadow: 0 0 0;
 }
 
-#game {
+#container {
   position: relative;
   background-color: beige;
   height: 70vh;
 }
 
-#deck {
+#game {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
@@ -34,14 +34,23 @@
   width: auto;
 }
 
-.card {
+.card-container {
   border-radius: 10px;
   background-color: white;
   border: 3px solid rgb(92, 98, 94);
   box-shadow: 5px 5px 5px rgb(170, 170, 170);
-  width: 8vw;
-  height: 22vh;
+  width: 9vw;
+  height: 26vh;
   margin: 4px;
+  cursor: pointer;
+}
+
+.card-before {
+
+}
+
+.card-after {
+
 }
 
 @media screen and (max-width: 900px) {
