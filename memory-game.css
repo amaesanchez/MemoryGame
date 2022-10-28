@@ -1,13 +1,13 @@
 * {
   margin: 0px;
   box-sizing: border-box;
+  font-family: "Grover Heavy", sans-serif;
 }
 
 #header {
   background-color: beige;
   padding: 45px;
   text-align: center;
-  font-family: "Grover Heavy", sans-serif;
   font-size: 55px;
   color: orange;
   text-shadow: 3px 3px 2px rgb(64, 132, 61);
@@ -17,7 +17,7 @@
   padding: 12px;
   font-size: 20px;
   color: rgb(130, 128, 128);
-  text-shadow: 0 0 0;
+  text-shadow: 1px 1px 1px rgb(255, 255, 255);
 }
 
 #container {
@@ -27,6 +27,7 @@
 }
 
 #game {
+  border: 3px solid red;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
@@ -35,22 +36,35 @@
 }
 
 .card-container {
+  float: left;
+  position: relative;
   border-radius: 10px;
   background-color: white;
   border: 3px solid rgb(92, 98, 94);
   box-shadow: 5px 5px 5px rgb(170, 170, 170);
   width: 9vw;
   height: 26vh;
-  margin: 4px;
+  margin: 6px;
   cursor: pointer;
 }
 
+.question {
+  font-size: 45px;
+  position: absolute;
+  color: rgb(120, 120, 120);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+
 .card-before {
+  position: relative;
 
 }
 
 .card-after {
-
+  position: absolute;
 }
 
 @media screen and (max-width: 900px) {
