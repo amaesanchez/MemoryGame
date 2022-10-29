@@ -16,8 +16,10 @@ const COLORS = [
 ];
 
 const colors = shuffle(COLORS);
-
 createCards(colors);
+
+const deck = document.querySelectorAll(".card-container");
+console.log(deck);
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -70,20 +72,24 @@ function flipCard(card) {
 }
 
 /** Flip a card face-down. */
-
 function unFlipCard(card) {
   // ... you need to write this ...
   card.style.backgroundColor = "white";
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
-
 function handleCardClick(evt) {
   // ... you need to write this ...
   let card = evt.target;
-  if (card.style.backgroundColor = "white") {
+
+  if (card.style.backgroundColor === "white" || !card.style.backgroundColor) {
     flipCard(card);
-  } else {
-    unFlipCard(card);
   }
+
+  const gameBoard = document.getElementById("game");
+  // if 2 cards have matching bgColor
+  // clearTimeout()
+  console.log(card.parentElement.children)
+  setTimeout(unFlipCard, 2000, card);
+
 }
