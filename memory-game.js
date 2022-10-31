@@ -18,8 +18,6 @@ const COLORS = [
 const colors = shuffle(COLORS);
 createCards(colors);
 
-const deck = document.querySelectorAll(".card-container");
-console.log(deck);
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -69,27 +67,41 @@ function flipCard(card) {
   // ... you need to write this ...
   // if two cards are already flipped, cant flip another card, & setTimer
   card.style.backgroundColor = card.classList[1];
+  card.classList.add("flipped");
 }
 
 /** Flip a card face-down. */
 function unFlipCard(card) {
   // ... you need to write this ...
-  card.style.backgroundColor = "white";
+  card.style.backgroundColor = null;
+  card.classList.remove("flipped");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
+let flipped = [];
 function handleCardClick(evt) {
   // ... you need to write this ...
   let card = evt.target;
 
-  if (card.style.backgroundColor === "white" || !card.style.backgroundColor) {
+  // flip card and store in an array
+  if (card.classList[2] !== "flipped" && flipped.length < 2) {
     flipCard(card);
+    flipped.push(card);
+  }
+  console.log(flipped);
+
+  // once array length === 2, start Timeout for items stored in flipped
+  if (flipped.length === 2) {
+    for (let flippedCard of flipped) {
+      let cardTimer = setTimeout(unFlipCard, 1000, flippedCard);
+      // if backgroundColor of both items are same, clear timeout for both
+      if (flipped[0].style.backgroundColor === flipped[1].style.backgroundColor) {
+        clearTimeout(cardTimer);
+      }
+    }
+    // reset flipped array
+    flipped = [];
   }
 
-  const gameBoard = document.getElementById("game");
-  // if 2 cards have matching bgColor
-  // clearTimeout()
-  console.log(card.parentElement.children)
-  setTimeout(unFlipCard, 2000, card);
-
+  //DEBUG: i can still click on more than 2 cards
 }
