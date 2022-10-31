@@ -17,7 +17,7 @@ const COLORS = [
 
 const colors = shuffle(COLORS);
 createCards(colors);
-
+const deck = document.querySelectorAll(".card-container");
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -75,33 +75,45 @@ function unFlipCard(card) {
   // ... you need to write this ...
   card.style.backgroundColor = null;
   card.classList.remove("flipped");
+  lock = false;
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
+let matched = [];
 let flipped = [];
+// flag so that you cant populate flipped until AFTER timeout is done
+let lock = false;
+
 function handleCardClick(evt) {
   // ... you need to write this ...
   let card = evt.target;
 
   // flip card and store in an array
-  if (card.classList[2] !== "flipped" && flipped.length < 2) {
-    flipCard(card);
-    flipped.push(card);
+  if (!lock) {
+    if (card.classList[2] !== "flipped" && flipped.length <= 1) {
+      flipCard(card);
+      flipped.push(card);
+    }
   }
-  console.log(flipped);
 
-  // once array length === 2, start Timeout for items stored in flipped
   if (flipped.length === 2) {
+    lock = true;
     for (let flippedCard of flipped) {
       let cardTimer = setTimeout(unFlipCard, 1000, flippedCard);
       // if backgroundColor of both items are same, clear timeout for both
-      if (flipped[0].style.backgroundColor === flipped[1].style.backgroundColor) {
+      if (
+        flipped[0].style.backgroundColor === flipped[1].style.backgroundColor
+      ) {
         clearTimeout(cardTimer);
+        matched.push(flipped);
+        lock = false;
       }
     }
     // reset flipped array
     flipped = [];
   }
-
-  //DEBUG: i can still click on more than 2 cards
+  console.log(matched.length, deck.length);
+  if (matched.length === deck.length) {
+    alert("YOU WIN!");
+  }
 }
