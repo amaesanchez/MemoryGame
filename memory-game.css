@@ -4,6 +4,10 @@
   font-family: "Grover Heavy", sans-serif;
 }
 
+body {
+  position: relative;
+}
+
 #header {
   background-color: beige;
   padding: 45px;
@@ -56,14 +60,38 @@
   transform: translate(-50%, -50%)
 }
 
+#popup {
+  background-color: rgb(248, 213, 149);
+  border: 3px solid rgb(92, 98, 94);
+  box-shadow: 0 0 10px rgb(122, 122, 122);
+  border-radius: 10px;
+  width: 35%;
+  height: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-.card-before {
+#fin {
   position: relative;
+  text-align: center;
+  top: 20%;
 
 }
 
-.card-after {
-  position: absolute;
+#restart {
+  position: relative;
+  text-align: center;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 7px 20px;
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 4px;
+  font-family: Verdana, sans-serif;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {

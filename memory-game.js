@@ -112,8 +112,35 @@ function handleCardClick(evt) {
     // reset flipped array
     flipped = [];
   }
-  console.log(matched.length, deck.length);
+
   if (matched.length === deck.length) {
-    alert("YOU WIN!");
+    winner();
   }
+}
+
+// alerts when you finished game
+
+// create popup alerting you finished game
+function winner() {
+  const bodyCont = document.querySelector("body");
+
+  const popUp = document.createElement("div");
+  const popText = document.createElement("h1");
+  const restartBtn = document.createElement("button");
+
+  popText.innerText = "You Win!";
+  restartBtn.innerText = "Restart";
+
+  popUp.setAttribute("id", "popup");
+  popText.setAttribute("id", "fin");
+  restartBtn.setAttribute("id", "restart");
+
+  popUp.append(popText, restartBtn);
+  bodyCont.append(popUp);
+  // create new div for popup block
+  // create restart button in popup, on click => location.reload()
+
+  restartBtn.addEventListener("click", (evt) => {
+    location.reload();
+  });
 }
