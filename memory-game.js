@@ -14,10 +14,16 @@ const COLORS = [
   "orange",
   "cadetblue",
 ];
+const gameBoard = document.getElementById("game");
+const startBtn = document.querySelector("#start-button");
 
-const colors = shuffle(COLORS);
-createCards(colors);
-const deck = document.querySelectorAll(".card-container");
+/** generates deck of cards on click of start button */
+startBtn.addEventListener("click", (evt) => {
+  const colors = shuffle(COLORS);
+  createCards(colors);
+  startBtn.style.display = "none";
+});
+
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -45,8 +51,6 @@ function shuffle(items) {
  */
 
 function createCards(colors) {
-  const gameBoard = document.getElementById("game");
-
   for (let color of colors) {
     let card = document.createElement("div");
 
@@ -79,12 +83,14 @@ function unFlipCard(card) {
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
+
 let matched = [];
 let flipped = [];
 // flag so that you cant populate flipped until AFTER timeout is done
 let lock = false;
 
 function handleCardClick(evt) {
+  const deck = document.querySelectorAll(".card-container");
   let card = evt.target;
 
   // flip card and store in an array
@@ -98,7 +104,11 @@ function handleCardClick(evt) {
   if (flipped.length === 2) {
     lock = true;
     for (let flippedCard of flipped) {
-      let cardTimer = setTimeout(unFlipCard, 1000, flippedCard);
+      let cardTimer = setTimeout(
+        unFlipCard,
+        FOUND_MATCH_WAIT_MSECS,
+        flippedCard
+      );
       // if backgroundColor of both items are same, clear timeout for both
       if (
         flipped[0].style.backgroundColor === flipped[1].style.backgroundColor
@@ -118,6 +128,7 @@ function handleCardClick(evt) {
 }
 
 /** Create popup, alerting you finished the game */
+
 function winner() {
   const bodyCont = document.querySelector("body");
   // create new div for popup
@@ -135,8 +146,15 @@ function winner() {
   popUp.append(popText, restartBtn);
   bodyCont.append(popUp);
 
-  // create restart button in popup, on click => location.reload()
+  // create restart button in popup, on click => refresh page
   restartBtn.addEventListener("click", (evt) => {
-    location.reload();
+    // reshuffle deck & reset variables
+    gameBoard.textContent = "";
+    popUp.remove();
+    const colors = shuffle(COLORS);
+    createCards(colors);
+    matched = [];
+    flipped = [];
+    lock = false;
   });
 }
