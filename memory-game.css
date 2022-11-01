@@ -108,4 +108,44 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+  #header {
+    font-size: 40px;
+  }
+
+  #caption {
+    font-size: 15px;
+  }
+
+  #game {
+    width: 74vw;
+
+  }
+  .card-container {
+    width: 12vw;
+    height: 15vh;
+  }
+
+  #start-button {
+    width: 200px;
+    height:80px;
+    font-size: 25px;
+  }
+
+  #popup {
+    width: 60%;
+    height: 25%;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #fin {
+    font-size: 25px;
+  }
+
+  #restart {
+    padding: 7px 15px;
+    font-size: 13px;
+  }
 }
