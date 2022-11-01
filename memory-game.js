@@ -85,7 +85,6 @@ let flipped = [];
 let lock = false;
 
 function handleCardClick(evt) {
-  // ... you need to write this ...
   let card = evt.target;
 
   // flip card and store in an array
@@ -118,12 +117,10 @@ function handleCardClick(evt) {
   }
 }
 
-// alerts when you finished game
-
-// create popup alerting you finished game
+/** Create popup, alerting you finished the game */
 function winner() {
   const bodyCont = document.querySelector("body");
-
+  // create new div for popup
   const popUp = document.createElement("div");
   const popText = document.createElement("h1");
   const restartBtn = document.createElement("button");
@@ -137,9 +134,8 @@ function winner() {
 
   popUp.append(popText, restartBtn);
   bodyCont.append(popUp);
-  // create new div for popup block
-  // create restart button in popup, on click => location.reload()
 
+  // create restart button in popup, on click => location.reload()
   restartBtn.addEventListener("click", (evt) => {
     location.reload();
   });
