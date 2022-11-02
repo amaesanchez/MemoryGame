@@ -109,7 +109,7 @@ body {
 
 @media screen and (max-width: 900px) {
   #header {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   #caption {
@@ -126,9 +126,9 @@ body {
   }
 
   #start-button {
-    width: 200px;
-    height:80px;
-    font-size: 25px;
+    width: 250px;
+    height:100px;
+    font-size: 30px;
   }
 
   #popup {
