@@ -8,6 +8,10 @@ body {
   position: relative;
 }
 
+#header-container {
+  position: relative;
+}
+
 #header {
   background-color: beige;
   padding: 45px;
@@ -22,6 +26,12 @@ body {
   font-size: 20px;
   color: rgb(130, 128, 128);
   text-shadow: 1px 1px 1px rgb(255, 255, 255);
+}
+
+#score {
+  position: absolute;
+  top:0;
+  color: green;
 }
 
 #start-container {
@@ -89,6 +99,7 @@ body {
   text-align: center;
   font-size: 40px;
   color: rgb(100, 100, 100);
+  text-shadow: 0 0 7px white;
   top: 20%;
 
 }

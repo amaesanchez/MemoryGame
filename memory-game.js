@@ -15,6 +15,7 @@ const COLORS = [
   "cadetblue",
 ];
 const gameBoard = document.getElementById("game");
+const currScore = document.getElementById("curr-score");
 const startBtn = document.querySelector("#start-button");
 
 /** generates deck of cards on click of start button */
@@ -80,6 +81,7 @@ function unFlipCard(card) {
   card.style.backgroundColor = null;
   card.classList.remove("flipped");
   lock = false;
+  currScore.innerText -= 2.5;
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
@@ -136,7 +138,19 @@ function winner() {
   const popText = document.createElement("h1");
   const restartBtn = document.createElement("button");
 
-  popText.innerText = "You Win!";
+
+  switch (true) {
+    case (currScore.innerText >= 90):
+      popText.innerText = "Excellent job!";
+      break;
+    case (currScore.innerText >= 75 && currScore.innerText < 90):
+      popText.innerText = "Pretty decent!"
+      break;
+    case (currScore.innerText < 75):
+      popText.innerText = "Let's have another try!"
+      break;
+  }
+  // popText.innerText = `Your score: ${currScore.innerText}!`;
   restartBtn.innerText = "Restart";
 
   popUp.setAttribute("id", "popup");
@@ -155,6 +169,7 @@ function winner() {
     createCards(colors);
     matched = [];
     flipped = [];
+    currScore.innerText = 100;
     lock = false;
   });
 }
