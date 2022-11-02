@@ -149,3 +149,14 @@ body {
     font-size: 13px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  #game {
+    width: 90vw;
+  }
+
+  .card-container {
+    width: 9vw;
+    height: 11vh;
+  }
+}
