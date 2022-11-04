@@ -25,9 +25,7 @@ startBtn.addEventListener("click", (evt) => {
   startBtn.style.display = "none";
 });
 
-
 /** Shuffle array items in-place and return shuffled array. */
-
 function shuffle(items) {
   // This algorithm does a "perfect shuffle", where there won't be any
   // statistical bias in the shuffle (many naive attempts to shuffle end up not
@@ -50,7 +48,6 @@ function shuffle(items) {
  * - a class with the value of the color
  * - a click event listener for each card to handleCardClick
  */
-
 function createCards(colors) {
   for (let color of colors) {
     let card = document.createElement("div");
@@ -66,31 +63,27 @@ function createCards(colors) {
 }
 
 /** Flip a card face-up. */
-/** on card click, flipCard (toggle bg color to random from COLORS) */
-
 function flipCard(card) {
-  // ... you need to write this ...
-  // if two cards are already flipped, cant flip another card, & setTimer
   card.style.backgroundColor = card.classList[1];
   card.classList.add("flipped");
 }
 
 /** Flip a card face-down. */
 function unFlipCard(card) {
-  // ... you need to write this ...
   card.style.backgroundColor = null;
   card.classList.remove("flipped");
   lock = false;
   currScore.innerText -= 2.5;
 }
 
-/** Handle clicking on a card: this could be first-card or second-card. */
 
+// inventory for the 2 cards that have been flipped & the cards that have been matched
 let matched = [];
 let flipped = [];
 // flag so that you cant populate flipped until AFTER timeout is done
 let lock = false;
 
+/** Handle clicking on a card: this could be first-card or second-card. */
 function handleCardClick(evt) {
   const deck = document.querySelectorAll(".card-container");
   let card = evt.target;
@@ -102,7 +95,7 @@ function handleCardClick(evt) {
       flipped.push(card);
     }
   }
-
+  // once flipped array has 2 cards, setTimeout, then check bg colors
   if (flipped.length === 2) {
     lock = true;
     for (let flippedCard of flipped) {
@@ -123,34 +116,42 @@ function handleCardClick(evt) {
     // reset flipped array
     flipped = [];
   }
-
+  // once all cards have been matched, end game
   if (matched.length === deck.length) {
-    winner();
+    storeScore(round);
+    round++
+    endGame();
   }
 }
 
-/** Create popup, alerting you finished the game */
+let highScoreArr = []
+function storeScore(round) {
+  localStorage.setItem(highScore);
+  let highScoreString = localStorage;
+  console.log(highScoreString);
 
-function winner() {
+}
+
+/** Create popup, alerting you finished the game */
+function endGame() {
   const bodyCont = document.querySelector("body");
   // create new div for popup
   const popUp = document.createElement("div");
   const popText = document.createElement("h1");
   const restartBtn = document.createElement("button");
 
-
+  // output text depending on score
   switch (true) {
-    case (currScore.innerText >= 90):
+    case currScore.innerText >= 90:
       popText.innerText = "Excellent job!";
       break;
-    case (currScore.innerText >= 75 && currScore.innerText < 90):
-      popText.innerText = "Pretty decent!"
+    case currScore.innerText >= 75 && currScore.innerText < 90:
+      popText.innerText = "Pretty decent!";
       break;
-    case (currScore.innerText < 75):
-      popText.innerText = "Let's have another try!"
+    case currScore.innerText < 75:
+      popText.innerText = "Let's try again!";
       break;
   }
-  // popText.innerText = `Your score: ${currScore.innerText}!`;
   restartBtn.innerText = "Restart";
 
   popUp.setAttribute("id", "popup");

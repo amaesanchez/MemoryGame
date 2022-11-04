@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <title>Memory Game!</title>
-  <style>
-    @import url('https://fonts.cdnfonts.com/css/grover-heavy');
-    @import url('https://fonts.cdnfonts.com/css/gt-maru');
-  </style>
-  <link rel="stylesheet" href="memory-game.css"/>
-</head>
-<body>
-  <div id="header-container">
-    <h1 id="header">Memory Game
-      <br><p id="caption">Find the matching pairs!</p>
-    </h1>
-    <p id="score">Score: <output id="curr-score">100</output></p>
-  </div>
-
-  <div id="container">
-    <div id="game">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Memory Game!</title>
+    <style>
+      @import url("https://fonts.cdnfonts.com/css/grover-heavy");
+      @import url("https://fonts.cdnfonts.com/css/gt-maru");
+    </style>
+    <link rel="stylesheet" href="memory-game.css" />
+  </head>
+  <body>
+    <div id="header-container">
+      <h1 id="header">
+        Memory Game <br />
+        <p id="caption">Find the matching pairs!</p>
+      </h1>
+      <p id="score">Score: <output id="curr-score">100</output></p>
     </div>
-  </div>
 
-  <div id="start-container">
-    <button id="start-button">Start</button>
-  </div>
+    <div id="container">
+      <div id="game"></div>
+    </div>
 
-  <script src="memory-game.js"></script>
-</body>
+    <div id="start-container">
+      <button id="start-button">Start</button>
+    </div>
+
+    <script src="memory-game.js"></script>
+  </body>
 </html>
