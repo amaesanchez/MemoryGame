@@ -118,27 +118,32 @@ function handleCardClick(evt) {
   }
   // once all cards have been matched, end game
   if (matched.length === deck.length) {
-    storeScore(round);
-    round++
+    storeScore();
     endGame();
   }
 }
 
-let highScoreArr = []
-function storeScore(round) {
-  localStorage.setItem(highScore);
-  let highScoreString = localStorage;
-  console.log(highScoreString);
+// prevents localStorage from resetting on refresh
+let scores = localStorage.getItem('highScore') || "0";
+localStorage.setItem('highScore', scores);
 
+/** determines highest score from user */
+function storeScore() {
+  if (currScore.innerText > localStorage.getItem('highScore')) {
+    localStorage.setItem('highScore', currScore.innerText);
+  }
 }
 
-/** Create popup, alerting you finished the game */
+/** Create popup, alerting you finished the game
+ * adds high score 'leaderboard'
+*/
 function endGame() {
   const bodyCont = document.querySelector("body");
   // create new div for popup
   const popUp = document.createElement("div");
   const popText = document.createElement("h1");
   const restartBtn = document.createElement("button");
+  const score = document.createElement("p");
 
   // output text depending on score
   switch (true) {
@@ -153,15 +158,19 @@ function endGame() {
       break;
   }
   restartBtn.innerText = "Restart";
+  score.innerText = `Best Score: ${localStorage.getItem('highScore')}`;
 
+  // sets style for each element
   popUp.setAttribute("id", "popup");
   popText.setAttribute("id", "fin");
   restartBtn.setAttribute("id", "restart");
+  score.setAttribute("id", "leaderboard")
 
-  popUp.append(popText, restartBtn);
+  // appends elements to HTML
+  popUp.append(popText, restartBtn, score);
   bodyCont.append(popUp);
 
-  // create restart button in popup, on click => refresh page
+  // on click of restart button in popup => refresh page
   restartBtn.addEventListener("click", (evt) => {
     // reshuffle deck & reset variables
     gameBoard.textContent = "";
